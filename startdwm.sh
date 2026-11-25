@@ -4,4 +4,5 @@
 
 feh --bg-fill ~/wallpapers/HVzzirDXoAAMeOC.jpg
 picom &
+slstatus &
 exec dwm

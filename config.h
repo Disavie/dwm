@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-
+#include <X11/XF86keysym.h>
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gap pixel between windows */
@@ -38,7 +38,6 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 static const int refreshrate = 120;  /* refresh rate (per second) for client move/resize */
 
-
 #include "fibonacci.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -64,6 +63,14 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = {"rofi", "-show", "run", NULL};
 static const char *termcmd[]  = { "alacritty", NULL };
+
+static const char *brightnessup[]   = { "brightnessctl", "set", "+5%", NULL };
+static const char *brightnessdown[] = { "brightnessctl", "set", "5%-", NULL };
+
+static const char *volumeup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *volumedown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *volumemute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *screenshot[] = {"sh", "-c", "maim -s | xclip -selection clipboard -t image/png -i", NULL};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -92,6 +99,17 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+    /* Brightness */
+    { 0, XF86XK_MonBrightnessUp,   spawn, {.v = brightnessup} },
+    { 0, XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown} },
+
+    /* Volume */
+    { 0, XF86XK_AudioRaiseVolume,  spawn, {.v = volumeup} },
+    { 0, XF86XK_AudioLowerVolume,  spawn, {.v = volumedown} },
+    { 0, XF86XK_AudioMute,         spawn, {.v = volumemute} },
+
+    /* Screenshot */
+    { 0, XK_Print,                 spawn, {.v = screenshot} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
