@@ -4,9 +4,10 @@
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const int user_bh            = 0;        /* 2 is the default spacing around the bar's font */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {"monospace:size=10" };
+static const char *fonts[]          = {"monospace:size=8" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -32,7 +33,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.75; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.66; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
