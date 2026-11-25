@@ -32,7 +32,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.75; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -62,6 +62,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = {"rofi", "-show", "run", NULL};
+static const char *quickbrowsercmd[] = {"rofi", "-show", "websearch", NULL};
 static const char *termcmd[]  = { "alacritty", NULL };
 
 static const char *brightnessup[]   = { "brightnessctl", "set", "+5%", NULL };
@@ -75,6 +76,7 @@ static const char *screenshot[] = {"sh", "-c", "maim -s | xclip -selection clipb
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+    { MODKEY,		                XK_n,      spawn,          {.v = quickbrowsercmd } },
 	{ MODKEY,		                XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
