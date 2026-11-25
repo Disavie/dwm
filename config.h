@@ -3,7 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 2;        /* gap pixel between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 5;       /* snap pixel */
 static const int user_bh            = 0;        /* 2 is the default spacing around the bar's font */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -24,11 +24,11 @@ static const char *colors[][3]      = {
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 /* launcher commands (They must be NULL terminated) */
-static const char* rofi[]      = { "rofi", "-show", "run", NULL };
+static const char* rofi[]      = { "rofi", "-show", "settings", NULL };
 
 static const Launcher launchers[] = {
        /* command       name to display */
-	{ rofi,         "rofi" },
+	{ rofi,         "[ ]" },
 };
 
 static const Rule rules[] = {
@@ -37,9 +37,10 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{   "Alacritty",     NULL,       NULL,       0,            False,       -1 },
-	{   "Navigator",     NULL,       NULL,       1<<1,          False,       -1 },
-	{   "firefox",       NULL,       NULL,       1<<1,          False,       -1 },
+	{   "Alacritty",     NULL,       NULL,       1,          False,       -1 },
+	{   "Navigator",     NULL,       NULL,       1<<1,       False,       -1 },
+	{   "firefox",       NULL,       NULL,       1<<1,       False,       -1 },
+	{   "my_settings",   NULL,       NULL,       0,          1,           -1 },
 };
 
 /* layout(s) */
