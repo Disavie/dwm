@@ -7,7 +7,10 @@ static const unsigned int snap      = 5;       /* snap pixel */
 static const int user_bh            = 0;        /* 2 is the default spacing around the bar's font */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {"monospace:size=8" };
+static const char *fonts[] = {
+    "monospace:size=8",
+    "Symbols Nerd Font:size=8",
+};
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -41,6 +44,7 @@ static const Rule rules[] = {
 	{   "Navigator",     NULL,       NULL,       1<<1,       False,       -1 },
 	{   "firefox",       NULL,       NULL,       1<<1,       False,       -1 },
 	{   "my_settings",   NULL,       NULL,       0,          1,           -1 },
+	{   "arandr",        NULL,       NULL,       0,          1,           -1 },
 };
 
 /* layout(s) */
@@ -79,10 +83,15 @@ static const char *termcmd[]  = { "alacritty", NULL };
 
 static const char *brightnessup[]   = { "brightnessctl", "set", "+5%", NULL };
 static const char *brightnessdown[] = { "brightnessctl", "set", "5%-", NULL };
-
-static const char *volumeup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
-static const char *volumedown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
-static const char *volumemute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *volumeup[] = {
+    "amixer", "set", "Master", "5%+", NULL
+};
+static const char *volumedown[] = {
+    "amixer", "set", "Master", "5%-", NULL
+};
+static const char *volumemute[] = {
+    "amixer", "set", "Master", "toggle", NULL
+};
 static const char *screenshot[] = {"sh", "-c", "maim -s | xclip -selection clipboard -t image/png -i", NULL};
 
 static const Key keys[] = {
